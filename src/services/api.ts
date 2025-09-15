@@ -11,9 +11,7 @@ import {
   TextToRulesRequest,
   TextToRulesResponse,
   PreviewAudienceRequest,
-  PreviewAudienceResponse,
-  ApiResponse,
-  ApiError
+  PreviewAudienceResponse
 } from '../types';
 
 const BASE_URL = 'https://mini-crm-backend-xeno.onrender.com';

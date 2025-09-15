@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Plus, Eye, Save, Play } from 'lucide-react';
+import React, { useState, useEffect, useCallback } from 'react';
+import { Plus, Eye, Play } from 'lucide-react';
 import { Rule, CampaignFormData } from '../types';
 import apiService from '../services/api';
 import RuleBlock from '../components/Campaigns/RuleBlock';
@@ -50,7 +50,7 @@ const AudienceSegments: React.FC = () => {
     setCombinator(newCombinator);
   };
 
-  const previewAudience = async () => {
+  const previewAudience = useCallback(async () => {
     if ((rules || []).length === 0) return;
 
     try {
@@ -70,7 +70,7 @@ const AudienceSegments: React.FC = () => {
     } finally {
       setIsLoadingPreview(false);
     }
-  };
+  }, [rules, combinator]);
 
   const createCampaign = async () => {
     if ((rules || []).length === 0) {
@@ -109,7 +109,7 @@ const AudienceSegments: React.FC = () => {
     } else {
       setAudienceSize(null);
     }
-  }, [rules, combinator]);
+  }, [rules, combinator, previewAudience]);
 
   return (
     <div className="space-y-6">
